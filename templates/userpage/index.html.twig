@@ -23,6 +23,7 @@
 					<th scope="col">Firstname</th>
 					<th scope="col">Lastname</th>
 					<th scope="col">Password</th>
+					<th scope="col">Detail</th>
 					<th scope="col">Upravit</th>
 					<th scope="col">Smazat</th>
 				</tr>
@@ -36,12 +37,17 @@
 						<td>{{user.password}}</td>
 						<td>
 							<a href="/datapage/{{user.id}}">
-								<button class="btn btn-outline-primary">Upravit</button>
+								<button class="btn btn-outline-primary">Detail</button>
 							</a>
 
 						</td>
 						<td>
-							<a href="/datapage/{{user.id}}">
+							<a href="/datapage/edit/{{user.id}}">
+								<button class="btn btn-outline-primary">Upravit</button>
+							</a>
+						</td>
+						<td>
+							<a href="/datapage/delete/{{user.id}}">
 								<button class="btn btn-outline-danger">Smazat</button>
 							</a>
 						</td>

@@ -8,7 +8,17 @@
 		<h1 class="mb-2">Vytvořit uživatele</h1>
 
 		{{form_start(form)}}
-		{{ form_widget(form) }}
+		{# {{ form_widget(form) }} #}
+
+		{{ form_row(form.firstname) }}
+		{{ form_errors(form.firstname) }}
+
+		{{ form_row(form.lastname) }}
+		{{ form_errors(form.lastname) }}
+
+		{{ form_row(form.password) }}
+		{{ form_errors(form.password) }}
+
 		<div>
 			<a href="/datapage">
 				<button class="btn btn-outline-primary mt-3">Zpět</button>

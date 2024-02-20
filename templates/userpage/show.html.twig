@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block body %}
-	<div class="example-wrapper">
+	<div class="container text-center p-3">
 		<p class="text-center">Autor
 			<strong>
 				{{author}}</strong>
@@ -13,6 +13,18 @@
 		<h4>{{user.firstname}}</h4>
 		<h4>{{user.lastname}}</h4>
 		<h4>{{user.password}}</h4>
+
+		<a href="/datapage">
+			<button class="btn btn-outline-primary mt-3">Zpět</button>
+		</a>
+
+		<a href="/datapage/edit/{{user.id}}">
+			<button class="btn btn-primary mt-3">Upravit</button>
+		</a>
+
+		<a href="/datapage/delete/{{user.id}}">
+			<button class="btn btn-outline-danger mt-3">Smazat</button>
+		</a>
 
 	</div>
 {% endblock %}

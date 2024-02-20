@@ -8,7 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+// use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 class UserFormType extends AbstractType
 {
@@ -20,21 +20,24 @@ class UserFormType extends AbstractType
                     'class' => 'form-control m-3',
                     'placeholder' => 'Zadejte Jméno',
                 ),
-                    'label' => false
+                    'label' => false,
+                    'required' => false
             ])
             ->add('lastname', TextType::class, [
                 'attr' => array(
                     'class' => 'form-control m-3',
                     'placeholder' => 'Zadejte Příjmení',
                 ),
-                    'label' => false
+                    'label' => false,
+                    'required' => false
             ])
-            ->add('password', PasswordType::class, [
+            ->add('password', TextType::class, [
                 'attr' => array(
                     'class' => 'form-control m-3',
                     'placeholder' => 'Zadejte Heslo',
                 ),
-                    'label' => false
+                    'label' => false,
+                    'required' => false
             ])
         ;
     }
