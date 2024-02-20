@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create User Page
+{% endblock %}
+
+{% block body %}
+	<div class="container text-center p-3">
+		<h1 class="mb-2">Vytvořit uživatele</h1>
+
+		{{form_start(form)}}
+		{{ form_widget(form) }}
+		<div>
+			<a href="/datapage">
+				<button class="btn btn-outline-primary mt-3">Zpět</button>
+			</a>
+			<button type="submit" class="btn btn-primary mt-3">Vytvořit</button>
+		</div>
+		{{form_end(form)}}
+
+	</div>
+{% endblock %}
