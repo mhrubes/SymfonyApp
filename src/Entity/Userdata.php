@@ -16,13 +16,17 @@ class Userdata
 
     #[ORM\Column(length: 45, nullable: true)]
     #[Assert\Length(min:3)]
-    #[Assert\NotBlank]
+    #[Assert\NotBlank(message: "not empty")]
     private ?string $firstname = null;
 
     #[ORM\Column(length: 45, nullable: true)]
+    #[Assert\Length(min:3)]
+    #[Assert\NotBlank(message: "not empty")]
     private ?string $lastname = null;
 
     #[ORM\Column(length: 45, nullable: true)]
+    #[Assert\Length(min:3)]
+    #[Assert\NotBlank(message: "not empty")]
     private ?string $password = null;
 
     public function getId(): ?int

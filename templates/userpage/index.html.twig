@@ -11,6 +11,12 @@
 		</p>
 
 		<div class="text-center mb-3">
+			<a href="{{ path('change_locale', {'locale': 'cs'}) }}">CS</a>
+			<a href="{{ path('change_locale', {'locale': 'en'}) }}">EN</a>
+		</div>
+
+
+		<div class="text-center mb-3">
 			<a href="/datapage/create">
 				<button class="btn btn-primary">Přidat Uživatele</button>
 			</a>
@@ -20,9 +26,9 @@
 			<thead>
 				<tr>
 					<th scope="col">ID</th>
-					<th scope="col">Firstname</th>
-					<th scope="col">Lastname</th>
-					<th scope="col">Password</th>
+					<th scope="col">{{ translations['firstname'] | trans }}</th>
+					<th scope="col">{{ translations['lastname'] | trans }}</th>
+					<th scope="col">{{ translations['password'] | trans }}</th>
 					<th scope="col">Detail</th>
 					<th scope="col">Upravit</th>
 					<th scope="col">Smazat</th>
