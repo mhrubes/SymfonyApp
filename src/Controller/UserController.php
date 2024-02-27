@@ -7,7 +7,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Attribute\Route;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 use App\Repository\UserdataRepository;
 use App\Entity\Userdata;
@@ -17,29 +16,16 @@ class UserController extends AbstractController
 {
     private $em;
     private $userRepository;
-    private $translator;
 
-    public function __construct(UserdataRepository $userdataRepository, EntityManagerInterface $em, TranslatorInterface $translator) {
+    public function __construct(UserdataRepository $userdataRepository, EntityManagerInterface $em) {
         $this->userRepository = $userdataRepository;
         $this->em = $em;
-        $this->translator = $translator;
-    }
-
-    // Route na uložení hodnot z Překladu
-    private function getTranslations(): array
-    {
-        return [
-            'firstname' => $this->translator->trans('firstname'),
-            'lastname' => $this->translator->trans('lastname'),
-            'password' => $this->translator->trans('password'),
-        ];
     }
 
     #[Route('/change-locale/{locale}', name: 'change_locale')]
     public function changeLocale(string $locale, Request $request): Response
     {
-        // $request->getSession()->set('_locale', $locale);
-
+        $request->getSession()->set('_locale', $locale);
         return $this->redirectToRoute('app_data_page');
     }
 
@@ -47,11 +33,8 @@ class UserController extends AbstractController
     #[Route('/datapage', methods: ['GET'], name: 'app_data_page')]
     public function index(): Response
     {
-        $translations = $this->getTranslations();
-
         return $this->render('userpage/index.html.twig', [
-            'userList' => $this->userRepository->findAll(),
-            'translations' => $translations
+            'userList' => $this->userRepository->findAll()
         ]);
     }
 

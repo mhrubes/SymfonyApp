@@ -15,7 +15,6 @@
 			<a href="{{ path('change_locale', {'locale': 'en'}) }}">EN</a>
 		</div>
 
-
 		<div class="text-center mb-3">
 			<a href="/datapage/create">
 				<button class="btn btn-primary">Přidat Uživatele</button>
@@ -26,9 +25,9 @@
 			<thead>
 				<tr>
 					<th scope="col">ID</th>
-					<th scope="col">{{ translations['firstname'] | trans }}</th>
-					<th scope="col">{{ translations['lastname'] | trans }}</th>
-					<th scope="col">{{ translations['password'] | trans }}</th>
+					<th scope="col">{{ 'firstname' | trans }}</th>
+					<th scope="col">{{ 'lastname' | trans }}</th>
+					<th scope="col">{{ 'password' | trans }}</th>
 					<th scope="col">Detail</th>
 					<th scope="col">Upravit</th>
 					<th scope="col">Smazat</th>
@@ -43,18 +42,17 @@
 						<td>{{user.password}}</td>
 						<td>
 							<a href="/datapage/{{user.id}}">
-								<button class="btn btn-outline-primary">Detail</button>
+								<button class="btn btn-outline-primary">{{ 'detail' | trans }}</button>
 							</a>
-
 						</td>
 						<td>
 							<a href="/datapage/edit/{{user.id}}">
-								<button class="btn btn-outline-primary">Upravit</button>
+								<button class="btn btn-outline-primary">{{ 'update' | trans }}</button>
 							</a>
 						</td>
 						<td>
 							<a href="/datapage/delete/{{user.id}}">
-								<button class="btn btn-outline-danger">Smazat</button>
+								<button class="btn btn-outline-danger">{{ 'delete' | trans }}</button>
 							</a>
 						</td>
 					</tr>
@@ -62,4 +60,23 @@
 			</tbody>
 		</table>
 	</div>
+
+	<div class="container">
+		<p>
+			{{ 'firstname' | trans }}
+			{{ 'lastname' | trans }}
+			{{ 'password' | trans }}
+		</p>
+
+		{% block footer %}
+			<div id="language-switcher">
+				{% if app.session.has('_locale') %}
+					<p>Default locale:
+						{{ app.session.get('_locale') }}</p>
+				{% endif %}
+			</div>
+		{% endblock %}
+	</div>
+
+
 {% endblock %}

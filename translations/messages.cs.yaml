@@ -1,3 +1,6 @@
-firstname: Jméno
-lastname: Příjmení
-password: Heslo
+firstname: 'Jméno'
+lastname: 'Příjmení'
+password: 'Heslo'
+detail: 'Detail'
+update: 'Upravit'
+delete: 'Smazat'
