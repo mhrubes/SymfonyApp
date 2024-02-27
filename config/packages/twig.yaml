@@ -2,6 +2,8 @@ twig:
     file_name_pattern: '*.twig'
     globals:
         author: Martin Hrubeš
+    paths:
+        '%kernel.project_dir%/templates': App
 
 when@test:
     twig:

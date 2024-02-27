@@ -18,7 +18,7 @@ class UserFormType extends AbstractType
             ->add('firstname', TextType::class, [
                 'attr' => array(
                     'class' => 'form-control m-3',
-                    'placeholder' => 'Zadejte Jméno',
+                    'placeholder' => $options['placeholder']['firstname'],
                 ),
                     'label' => false,
                     'required' => false
@@ -46,6 +46,11 @@ class UserFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Userdata::class,
+            'placeholder' => [
+                'firstname' => 'enterUserFirstname',
+                'lastname' => 'enterUserLastname',
+                'password' => 'enterPassword',
+            ],
         ]);
     }
 }

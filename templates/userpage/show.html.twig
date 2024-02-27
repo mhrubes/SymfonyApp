@@ -1,29 +1,43 @@
 {% extends 'base.html.twig' %}
+{% import '@App/macro/author.macro.html.twig' as macros %}
 
 {% block title %}User Detail Page
 {% endblock %}
 
 {% block body %}
 	<div class="container text-center p-3">
-		<p class="text-center">Autor
-			<strong>
-				{{author}}</strong>
-		</p>
+		{{ macros.authorBlock(author) }}
 
-		<h4>{{user.firstname}}</h4>
-		<h4>{{user.lastname}}</h4>
-		<h4>{{user.password}}</h4>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th scope="col">ID</th>
+					<th scope="col">{{ 'firstname' | trans }}</th>
+					<th scope="col">{{ 'lastname' | trans }}</th>
+					<th scope="col">{{ 'password' | trans }}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">{{user.id}}</th>
+					<td>{{user.firstname}}</td>
+					<td>{{user.lastname}}</td>
+					<td>{{user.password}}</td>
+				</tr>
+			</tbody>
+		</table>
 
-		<a href="/datapage">
-			<button class="btn btn-outline-primary mt-3">Zpět</button>
+
+		<a href="/datapage/{{app.request.locale}}">
+			<button class="btn btn-outline-primary mt-3">{{ 'back' | trans }}</button>
 		</a>
 
-		<a href="/datapage/edit/{{user.id}}">
-			<button class="btn btn-primary mt-3">Upravit</button>
+		<a href="/datapage/{{app.request.locale}}/edit/{{user.id}}">
+			<button class="btn btn-primary mt-3">{{ 'update' | trans }}</button>
 		</a>
 
-		<a href="/datapage/delete/{{user.id}}">
-			<button class="btn btn-outline-danger mt-3">Smazat</button>
+		<a href="/datapage/{{app.request.locale}}/delete/{{user.id}}">
+			<button class="btn btn-outline-danger mt-3">{{ 'delete' | trans }}</button>
 		</a>
 
 	</div>

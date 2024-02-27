@@ -16,6 +16,7 @@ class UserController extends AbstractController
 {
     private $em;
     private $userRepository;
+    private $lang;
 
     public function __construct(UserdataRepository $userdataRepository, EntityManagerInterface $em) {
         $this->userRepository = $userdataRepository;
@@ -26,11 +27,12 @@ class UserController extends AbstractController
     public function changeLocale(string $locale, Request $request): Response
     {
         $request->getSession()->set('_locale', $locale);
-        return $this->redirectToRoute('app_data_page');
+        $lang = $locale;
+        return $this->redirectToRoute('app_data_page', ['_locale' => $locale]);
     }
 
     // Route na Načtení Seznamu
-    #[Route('/datapage', methods: ['GET'], name: 'app_data_page')]
+    #[Route('/datapage/{_locale}', methods: ['GET'], name: 'app_data_page')]
     public function index(): Response
     {
         return $this->render('userpage/index.html.twig', [
@@ -39,7 +41,7 @@ class UserController extends AbstractController
     }
 
     // Route na Vytvoření
-    #[Route('/datapage/create', name: 'create_user')]
+    #[Route('/datapage/{_locale}/create', name: 'create_user')]
     public function create(Request $request): Response
     {
         $user = new UserData();
@@ -61,7 +63,7 @@ class UserController extends AbstractController
     }
 
     // Route na Úpravu
-    #[Route('/datapage/edit/{id}', name: 'edit_user')]
+    #[Route('/datapage/{_locale}/edit/{id}', name: 'edit_user')]
     public function edit($id, Request $request): Response
     {
         $user = $this->userRepository->find($id);
@@ -84,7 +86,7 @@ class UserController extends AbstractController
     }
 
     // Route na Smazání
-    #[Route('/datapage/delete/{id}', methods: ['GET', 'DELETE'], name: 'delete_user')]
+    #[Route('/datapage/{_locale}/delete/{id}', methods: ['GET', 'DELETE'], name: 'delete_user')]
     public function delete($id): Response
     {
         try {
@@ -98,7 +100,7 @@ class UserController extends AbstractController
     }
 
     // Route na Detail
-    #[Route('/datapage/{id}', methods: ['GET'], name: 'app_data_page_show')]
+    #[Route('/datapage/{_locale}/{id}', methods: ['GET'], name: 'app_data_page_show')]
     public function show($id): Response
     {
         $user = $this->userRepository->find($id);

@@ -1,23 +1,21 @@
 {% extends 'base.html.twig' %}
+{% import '@App/macro/author.macro.html.twig' as macros %}
 
 {% block title %}Data Page
 {% endblock %}
 
 {% block body %}
 	<div class="container">
-		<p class="text-center">Autor
-			<strong>
-				{{author}}</strong>
-		</p>
+        {{ macros.authorBlock(author) }}
 
 		<div class="text-center mb-3">
-			<a href="{{ path('change_locale', {'locale': 'cs'}) }}">CS</a>
-			<a href="{{ path('change_locale', {'locale': 'en'}) }}">EN</a>
+			<a href="{{ path('change_locale', {'locale': 'cs', '_locale': app.request.locale }) }}">CS</a>
+			<a href="{{ path('change_locale', {'locale': 'en', '_locale': app.request.locale }) }}">EN</a>
 		</div>
 
 		<div class="text-center mb-3">
-			<a href="/datapage/create">
-				<button class="btn btn-primary">Přidat Uživatele</button>
+			<a href="/datapage/{{app.request.locale}}/create">
+				<button class="btn btn-primary">{{ 'createUser' | trans }}</button>
 			</a>
 		</div>
 
@@ -28,9 +26,9 @@
 					<th scope="col">{{ 'firstname' | trans }}</th>
 					<th scope="col">{{ 'lastname' | trans }}</th>
 					<th scope="col">{{ 'password' | trans }}</th>
-					<th scope="col">Detail</th>
-					<th scope="col">Upravit</th>
-					<th scope="col">Smazat</th>
+					<th scope="col">{{ 'detail' | trans }}</th>
+					<th scope="col">{{ 'update' | trans }}</th>
+					<th scope="col">{{ 'delete' | trans }}</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -41,17 +39,17 @@
 						<td>{{user.lastname}}</td>
 						<td>{{user.password}}</td>
 						<td>
-							<a href="/datapage/{{user.id}}">
+							<a href="/datapage/{{app.request.locale}}/{{user.id}}">
 								<button class="btn btn-outline-primary">{{ 'detail' | trans }}</button>
 							</a>
 						</td>
 						<td>
-							<a href="/datapage/edit/{{user.id}}">
+							<a href="/datapage/{{app.request.locale}}/edit/{{user.id}}">
 								<button class="btn btn-outline-primary">{{ 'update' | trans }}</button>
 							</a>
 						</td>
 						<td>
-							<a href="/datapage/delete/{{user.id}}">
+							<a href="/datapage/{{app.request.locale}}/delete/{{user.id}}">
 								<button class="btn btn-outline-danger">{{ 'delete' | trans }}</button>
 							</a>
 						</td>
@@ -62,12 +60,6 @@
 	</div>
 
 	<div class="container">
-		<p>
-			{{ 'firstname' | trans }}
-			{{ 'lastname' | trans }}
-			{{ 'password' | trans }}
-		</p>
-
 		{% block footer %}
 			<div id="language-switcher">
 				{% if app.session.has('_locale') %}

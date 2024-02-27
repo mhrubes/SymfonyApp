@@ -5,17 +5,16 @@
 
 {% block body %}
 	<div class="container text-center p-3">
-		<h1 class="mb-2">Upravit uživatele</h1>
+		<h1 class="mb-2">{{ 'updateUser' | trans }}</h1>
 
 		{{form_start(form)}}
 		{{ form_widget(form) }}
 		<div>
-			<a href="/datapage">
-				<button class="btn btn-outline-primary mt-3">Zpět</button>
+			<a href="/datapage/{{app.request.locale}}">
+				<button class="btn btn-outline-primary mt-3">{{ 'back' | trans }}</button>
 			</a>
-			<button type="submit" class="btn btn-primary mt-3">Aktualizovat</button>
+			<button type="submit" class="btn btn-primary mt-3">{{ 'update' | trans }}</button>
 		</div>
 		{{form_end(form)}}
-
 	</div>
 {% endblock %}
