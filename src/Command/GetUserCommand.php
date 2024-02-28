@@ -14,10 +14,9 @@ class GetUserCommand extends Command
     protected static $defaultName = 'app:get-user-command';
 
     public function __construct($projectDir, EntityManagerInterface $entityManager){
-        $this->$projectDir = $projectDir;
-        $this->entityManager = $entityManager;
-
         parent::__construct('app:get-user-command');
+
+        $this->entityManager = $entityManager;
     }
 
     protected function configure() : void
